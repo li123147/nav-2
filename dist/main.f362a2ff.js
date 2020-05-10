@@ -123,14 +123,14 @@ var $lastLi = $siteList.find('li.last');
 var x = localStorage.getItem('x');
 var xObject = JSON.parse(x);
 var hashMap = xObject || [{
-  logo: "J",
-  url: "jx3.xoyo.com"
+  logo: 'J',
+  url: 'http://jx3.xoyo.com'
 }, {
-  logo: "N",
-  url: "n.163.com"
+  logo: 'N',
+  url: 'http://n.163.com'
 }, {
-  logo: "L",
-  url: "lol.qq.com"
+  logo: 'L',
+  url: 'https://lol.qq.com/main.shtml'
 }];
 
 var simplifyUrl = function simplifyUrl(url) {
@@ -140,7 +140,7 @@ var simplifyUrl = function simplifyUrl(url) {
 var render = function render() {
   $siteList.find('li:not(.last)').remove();
   hashMap.forEach(function (node, index) {
-    var $li = $("<li>\n        <div class=\"site\">\n            <div class=\"logo\">".concat(node.logo[0], "</div>\n            <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n            <div class = \"close\">\n            <svg class=\"icon\">\n            <use xlink:href=\"#icon-close\"></use>\n            </svg>\n            </div>\n            </div>\n    </li>")).insertBefore($lastLi);
+    var $li = $("<li>\n <div class=\"site\">\n    <div class=\"logo\">".concat(node.logo, "</div>\n    <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n  \n    <div class=\"close\">\n    <svg class=\"icon\">\n    <use xlink:href=\"#icon-close\"></use>\n    </svg>\n  </div>\n</div>\n   </li> ")).insertBefore($lastLi);
     $li.on('click', function () {
       window.open(node.url);
     });
@@ -154,10 +154,10 @@ var render = function render() {
 
 render();
 $('.addButton').on('click', function () {
-  var url = window.prompt("请问你要添加的网址是啥？");
+  var url = window.prompt('请问你要添加的网址是什么?');
 
   if (url.indexOf('http') !== 0) {
-    url = "https://" + url;
+    url = 'https://' + url;
   }
 
   console.log(url);
@@ -176,11 +176,14 @@ window.onbeforeunload = function () {
 $(document).on('keypress', function (e) {
   var key = e.key;
 
-  for (i = 0; i < hashMap.length; i++) {
+  for (var i = 0; i < hashMap.length; i++) {
     if (hashMap[i].logo.toLowerCase() === key) {
       window.open(hashMap[i].url);
     }
   }
 });
+$(document).on('keypress', '.searchForm', function (e) {
+  e.stopPropagation();
+});
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.955d7ec2.js.map
+//# sourceMappingURL=main.f362a2ff.js.map
